@@ -14,15 +14,15 @@ import java.util.Map;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(value = {MethodArgumentNotValidException.class})
-    public ResponseEntity<Map<String,String>> handleValidationExceptions(MethodArgumentNotValidException ex){
+    @ExceptionHandler(value = {MethodArgumentNotValidException.class})//If this exception is thrown run this code not default
+    public ResponseEntity<Map<String,String>> handleValidationExceptions(MethodArgumentNotValidException ex){ //grabbing info from ex
 
         Map<String,String> errors = new HashMap<>();
         for(FieldError error : ex.getBindingResult().getFieldErrors()){
-            String fieldName = error.getField();
-            String errorMessage = error.getDefaultMessage();
+            String fieldName = error.getField(); //getting name of the field
+            String errorMessage = error.getDefaultMessage(); //Error message
             errors.put(fieldName,errorMessage);
         }
-        return ResponseEntity.badRequest().body(errors);
+        return ResponseEntity.badRequest().body(errors); // Returning hashmap with error field and message
     }
 }

@@ -8,10 +8,10 @@ import java.util.List;
 
 @Service
 public class ProductService {
-    private final List<Product> products = new ArrayList<>();
+    private final List<Product> products = new ArrayList<>(); //List to store the data
     private long nextId = 1;
 
-    public Product addProduct(Product product) {
+    public Product addProduct(Product product) { //Method to add products
         product.setId(nextId++);
         products.add(product);
         return product;
@@ -19,5 +19,5 @@ public class ProductService {
 
     public List<Product> getAllProducts() {
         return products;
-    }
+    } // Method to return list of all products
 }
