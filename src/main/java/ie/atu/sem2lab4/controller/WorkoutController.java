@@ -10,23 +10,23 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/workouts")
+@RequestMapping("/workouts") // Endpoint
 public class WorkoutController {
-    private final WorkoutService service;
+    private final WorkoutService service; // New instance of service
 
     public WorkoutController(WorkoutService service) {
         this.service = service;
     }
 
-    @PostMapping
+    @PostMapping //Post request for adding workouts
     public ResponseEntity<Workout> createWorkout(
-            @Valid @RequestBody Workout workout){
+            @Valid @RequestBody Workout workout){//Does validation and looks for information in the body of the request
 
-        Workout newWorkout = service.createWorkout(workout);
+        Workout newWorkout = service.createWorkout(workout); //New instance of workout and adding to the list in service
         return ResponseEntity.status(HttpStatus.CREATED).body(newWorkout);
     }
 
-    @GetMapping
+    @GetMapping//Get request of getting list of workouts
     public ResponseEntity<List<Workout>> getAllWorkouts() {
         return ResponseEntity.ok(service.getAllWorkouts());
     }

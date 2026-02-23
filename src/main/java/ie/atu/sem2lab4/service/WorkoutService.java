@@ -8,10 +8,10 @@ import java.util.List;
 
 @Service
 public class WorkoutService {
-    private final List<Workout> workouts = new ArrayList<>();
+    private final List<Workout> workouts = new ArrayList<>(); //List to store all workouts
     private long idCounter = 1;
 
-    public Workout createWorkout(Workout workout) {
+    public Workout createWorkout(Workout workout) { //Method to add new workout
         workout.setId(idCounter++);
         workouts.add(workout);
         return workout;
@@ -19,5 +19,5 @@ public class WorkoutService {
 
     public List<Workout> getAllWorkouts() {
         return workouts;
-    }
+    } //Method to return all workouts from list
 }
